@@ -147,4 +147,22 @@ class MahasiswaController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	public function actionLists($id){
+        $countBranches = Mahasiswa::find()
+            ->where(['id'=>$id])
+          ->count();
+        $branches = Mahasiswa::find()
+            ->where(['id'=>$id])
+            ->all();
+        if($countBranches > 0)
+        {
+            foreach ($branches as $branch) {
+                echo "<option value'" .$branch->id. "'>".$branch->user_id."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>-</option>";
+        }
+    }
 }

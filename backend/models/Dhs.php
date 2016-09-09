@@ -62,11 +62,11 @@ class Dhs extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_tahun_ajaran' => 'Id Tahun Ajaran',
-            'npm_mahasiswa' => 'Npm Mahasiswa',
+            'id_tahun_ajaran' => 'Tahun Ajaran',
+            'npm_mahasiswa' => 'Nama Mahasiswa',
             'semester' => 'Semester',
             'user_id' => 'User ID',
-            'id_matakuliah' => 'Id Matakuliah',
+            'id_matakuliah' => ' Matakuliah',
             'nilai' => 'Nilai',
         ];
     }

@@ -78,6 +78,7 @@ class MahasiswaController extends Controller
     {
         $model = new Mahasiswa();
         $model->user_id = Yii::$app->user->identity->id;
+        $model->id = Yii::$app->user->identity->username;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

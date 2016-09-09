@@ -8,7 +8,9 @@ use backend\models\Mahasiswa;
 use backend\models\Matakuliah;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Dhs */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\widgets\ActiveForm
+ */
+
 ?>
 
 <div class="dhs-form">
@@ -17,11 +19,21 @@ use backend\models\Matakuliah;
 
     <?= $form->field($model, 'id_tahun_ajaran')->dropDownList(ArrayHelper::map(TahunAjaran::find()->all(),'id','tahun_ajaran')) ?>
 
-    <?= $form->field($model, 'npm_mahasiswa')->dropDownList(ArrayHelper::map(Mahasiswa::find()->all(),'id','nama')) ?>
+    <?= $form->field($model, 'npm_mahasiswa')->dropDownList(ArrayHelper::map(Mahasiswa::find()->all(),'id','nama'),
+    ['prompt'=>'Pilih Mahasiswa',
+    'onchange'=>'
+                $.post("index.php?r=mahasiswa/lists&id='.'"+$(this).val(),function(data)
+                { $("select#dhs-user_id" ).html(data), $("select#nilai-1-nilai" ).html(data);
+            });' ]
+  ); ?>
+
+
+  <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(Mahasiswa::find()->all(),'id','user_id'),
+  ['prompt'=>'Pilih User Id',
+   ]
+); ?>
 
     <?= $form->field($model, 'semester')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4' , '5' => '5',]) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'id_matakuliah')->dropDownList(ArrayHelper::map(Matakuliah::find()->all(),'id','matakuliah')) ?>
 
